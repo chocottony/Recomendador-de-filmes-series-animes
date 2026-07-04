@@ -1,19 +1,23 @@
+import os
 from http import HTTPStatus
 
 import requests
+from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
+from google import genai
 
+load_dotenv()
+
+GEMINI_KEY = os.getenv('GEMINI_API_KEY')
+TMBD_API_KEY = os.getenv('TMBD_API_KEY')
 app = FastAPI()
-TMBD_API_KEY = 'a9b8d6d94ef62653e6760d2b7e14b2f8'
 
 @app.get('/items', status_code=HTTPStatus.OK, response_class=HTMLResponse)
-async def read_items(name: str = ''):
-    content = ''
-    url = 'https://api.themoviedb.org/3/search/multi'
-    params = {'query': name, 'api_key': TMBD_API_KEY}
-    if name == '':
-        return f"""
+async def read_items(search_input: str = ''):
+
+    if not search_input:
+        return """
         <html>
             <head>
                 <title>Recomendador</title>
@@ -21,23 +25,27 @@ async def read_items(name: str = ''):
             <body>
                 <h1>Welcome to My App</h1>
                 <form action = '/items' method = 'get'>
-                    <label for = 'name'>Enter a name:</label>
-                    <input type = 'text' id = 'name' name = 'name'>
+                    <label for = 'search_input'>Enter a name:</label>
+                    <input type = 'text' id = 'search_input' name = 'search_input'>
                     <input type = 'submit' value = 'Search'>
                 </form>
             </body>
         </html>
         """
     
-    response = requests.get(url, params=params)
-    info = response.json()
+    html_content = ''
+    api_url = 'https://api.themoviedb.org/3/search/multi'
+    query_params = {'query': search_input, 'api_key': TMBD_API_KEY}
+    response = requests.get(api_url, params=query_params)
+    response_data = response.json()
 
     if response.status_code == HTTPStatus.OK:
-        for item in info['results']:
-            name = item.get('name', item.get('title', 'Unknown'))
-            overview = item.get('overview', 'No overview available')
+        for item in response_data['results']:
+            item_name = item.get('name', item.get('title', 'Unknown'))
+            item_overview = item.get('overview', 'No overview available')
+            item_image = item.get('poster_path', None)
 
-            content += f'<p>{name} - {overview}</p>'
+            html_content += f'<p>{item_name} - {item_overview}</p>'
 
         return f"""
         <html>
@@ -47,11 +55,11 @@ async def read_items(name: str = ''):
             <body>
                 <h1>Welcome to My App</h1>
                 <form action = '/items' method = 'get'>
-                    <label for = 'name'>Enter a name:</label>
-                    <input type = 'text' id = 'name' name = 'name'>
+                    <label for = 'search_input'>Enter a name:</label>
+                    <input type = 'text' id = 'search_input' name = 'search_input'>
                     <input type = 'submit' value = 'Search'>
                 </form>
-                {content}
+                {html_content}
             </body>
         </html>
         """
