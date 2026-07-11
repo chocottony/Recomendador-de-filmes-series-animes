@@ -72,6 +72,7 @@ def render_page(html_content: str = '') -> str:
     </html>
     """
 
+
 def render_home_page() -> str:
     return """
     <html>
