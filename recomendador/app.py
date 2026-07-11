@@ -17,7 +17,7 @@ app.mount('/static', StaticFiles(directory='static'), name='static')
 async def read_items(search_input: str = ''):
 
     if not search_input:
-        return render_page()
+        return render_home_page()
 
     paragraph = gemini.generate_recommendations(search_input)
 
@@ -68,6 +68,38 @@ def render_page(html_content: str = '') -> str:
             <div class="container">
                 {html_content}
             </div>
+        </body>
+    </html>
+    """
+
+def render_home_page() -> str:
+    return """
+    <html>
+        <head>
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Saira:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search" />
+            <link rel="stylesheet" href="/static/style.css">
+            <title>PlotPilot</title>
+        </head>
+        <body>
+            <section class="hero-section">
+                <div class="hero-container">
+                    <div class="hero-content">
+                    <span class="hero-tagline">AI-Powered</span>
+                    <h1 class="hero-title">PlotPilot</h1>
+                    <p class="hero-description">
+                        Describe what you want to watch and our AI will find the perfect recommendations for you
+                    </p>
+                    <form action = '/items' method = 'get'>
+                        <label for = 'search_input' style="color: var(--cor-texto); font-family: 'Saira', sans-serif; font-size: 1.2rem;">Enter a description:</label>
+                        <input type = 'text' id = 'search_input' name = 'search_input'>
+                        <button type="submit"><span class="material-symbols-outlined">search</span></button>
+                    </form>
+                    </div>
+                </div>
+            </section>
         </body>
     </html>
     """

@@ -87,3 +87,60 @@ form {
     display: flex;
     align-items: center;
 }
+
+.hero-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    display: flex;
+    background-image: url('../static/cinema-seats.jpg');
+    background-size: 70%;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.4;
+}
+
+.hero-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+}
+
+.hero-content {
+    color: var(--cor-destaque);
+    font-family: 'Saira', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+
+.hero-content form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-tagline {
+    color: var(--cor-texto);
+    font-family: 'Saira', sans-serif;
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.hero-title {
+    color: var(--cor-destaque);
+    font-family: 'Saira', sans-serif;
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.hero-description {
+    color: var(--cor-texto);
+    font-family: 'Saira', sans-serif;
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
