@@ -7,7 +7,7 @@
 ---
 
 ## 🎯 Live Demo & Links
-* **Live Application:** [View Live Site](recomendador-de-filmes-series-animes-production.up.railway.app)
+* **Live Application:** [View Live Site](https://recomendador-de-filmes-series-animes-production.up.railway.app)
 
 ---
 
