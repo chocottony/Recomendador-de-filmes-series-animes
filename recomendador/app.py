@@ -13,7 +13,7 @@ app = FastAPI()
 app.mount('/static', StaticFiles(directory='static'), name='static')
 
 
-@app.get('/items', status_code=HTTPStatus.OK, response_class=HTMLResponse)
+@app.get('/', status_code=HTTPStatus.OK, response_class=HTMLResponse)
 async def read_items(search_input: str = ''):
 
     if not search_input:
@@ -60,7 +60,7 @@ def render_page(html_content: str = '') -> str:
         </head>
         <body>
             <h1 style="color: var(--cor-destaque); font-family: 'Saira', sans-serif;">PlotPilot</h1>
-            <form action = '/items' method = 'get'>
+            <form action = '/' method = 'get'>
                 <label for = 'search_input' style="color: var(--cor-texto); font-family: 'Saira', sans-serif; font-size: 1.2rem;">Enter a description:</label>
                 <input type = 'text' id = 'search_input' name = 'search_input'>
                 <button type="submit"><span class="material-symbols-outlined">search</span></button>
@@ -93,7 +93,7 @@ def render_home_page() -> str:
                     <p class="hero-description">
                         Describe what you want to watch and our AI will find the perfect recommendations for you
                     </p>
-                    <form action = '/items' method = 'get'>
+                    <form action = '/' method = 'get'>
                         <label for = 'search_input' style="color: var(--cor-texto); font-family: 'Saira', sans-serif; font-size: 1.2rem;">Enter a description:</label>
                         <input type = 'text' id = 'search_input' name = 'search_input'>
                         <button type="submit"><span class="material-symbols-outlined">search</span></button>
