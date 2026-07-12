@@ -7,7 +7,7 @@
 ---
 
 ## 🎯 Live Demo & Links
-* **Live Application:** [View Live Site](https://your-demo-link.com)
+* **Live Application:** [View Live Site](recomendador-de-filmes-series-animes-production.up.railway.app)
 
 ---
 
@@ -91,6 +91,6 @@ Distributed under the MIT License. See `LICENSE` for more information.
 ---
 
 ## ✉️ Contact
-* **Antônio:** [LinkedIn](https://linkedin.com)
-* **Project Link:** [https://github.com](https://github.com)
+* **Antônio:** [LinkedIn](www.linkedin.com/in/antônio-garcia-98a112336)
+* **Project Link:** [https://github.com](https://github.com/chocottony/Recomendador-de-filmes-series-animes)
 * **Email:** kraftoiko@gmail.com
